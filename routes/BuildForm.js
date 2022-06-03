@@ -8,6 +8,7 @@ const NewForm=app.post('/createform',authenticate,(req,res)=>{
         const userId= req.user
         const f1=new Form({
             userId:userId,
+            formTitle:req.body.formTitle,
             fields:req.body.fields
         })
        const result=await f1.save();
