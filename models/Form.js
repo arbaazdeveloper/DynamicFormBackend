@@ -3,7 +3,9 @@ const mongoose=require('mongoose')
 const FormSchema=mongoose.Schema({
     userId:{type:String},
     formTitle:{type:String},
-    fields:{type:Array}
+    fields:{type:Array},
+    createdOn:{type:String},
+    date:{type:Date,default:Date.now()}
 
 })
 
