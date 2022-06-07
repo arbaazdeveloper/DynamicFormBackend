@@ -4,14 +4,13 @@ const app=express()
 
 const CountToday=app.get('/countformtoday',(req,res)=>{
     const doCount=async ()=>{
-        const date=new Date()
-        var d=date.getDay()
-        var m=date.getMonth()
-        var y=date.getFullYear()
-        const myDate=`${d}-${m}-${y}`;
-        const result= await Form.find({createdOn:myDate}).count()
-        res.json(result)
 
+        var ourDate = new Date();
+        var pastDate = ourDate.getDate();
+        ourDate.setDate(pastDate);
+        console.log(ourDate)
+        const result= await Form.find({createdOn:ourDate.toDateString()}).count()
+        res.json(result)
     }
     doCount()
 })
