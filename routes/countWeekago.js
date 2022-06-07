@@ -1,12 +1,11 @@
 const express=require('express')
 const Form = require('../models/Form')
-const moment=require('moment')
 const app=express()
 
-const CountyesterDay=app.get('/countformyesterday',(req,res)=>{
+const countWeekAgo=app.get('/countweekago',(req,res)=>{
     const doCount=async ()=>{
         var ourDate = new Date();
-        var pastDate = ourDate.getDate() - 1;
+        var pastDate = ourDate.getDate() - 7;
         ourDate.setDate(pastDate);
         const result= await Form.find({createdOn:ourDate.toDateString()}).count()
         res.json(result)
@@ -14,4 +13,4 @@ const CountyesterDay=app.get('/countformyesterday',(req,res)=>{
     }
     doCount()
 })
-module.exports=CountyesterDay
+module.exports=countWeekAgo
